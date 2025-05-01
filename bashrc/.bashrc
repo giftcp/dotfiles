@@ -180,3 +180,7 @@ bind -x '"\C-a":"nvims"'
 
 # Created by `pipx` on 2025-03-06 23:44:00
 export PATH="$PATH:/home/thor/.local/bin"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/home/thor/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)

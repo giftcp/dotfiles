@@ -86,6 +86,15 @@ alias k='kubectl'
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
+export MOZ_ENABLE_WAYLAND=1
+export GTK_BACKEND=wayland
+export OZONE_PLATFORM=wayland
+
+# Example for 1.25 scaling on a 96 DPI screen
+export GDK_SCALE=1
+export GDK_DPI_SCALE=1.25
+
+
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/home/thor/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
