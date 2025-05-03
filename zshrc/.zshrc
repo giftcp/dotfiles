@@ -54,6 +54,10 @@ bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
+bindkey -v
+
+# jj to escape to normal mode (like Vim)
+bindkey -M viins 'jj' vi-cmd-mode
 
 # History
 HISTSIZE=5000
@@ -77,6 +81,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias ls='ls --color'
+alias ll='ls -ll --color'
 alias v='nvim'
 alias c='clear'
 
