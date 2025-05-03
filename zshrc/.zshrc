@@ -41,6 +41,9 @@ zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
 
+export EDITOR=nvim
+
+
 # Load completions
 autoload -Uz compinit && compinit
 
