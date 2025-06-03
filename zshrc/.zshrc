@@ -60,7 +60,17 @@ bindkey '^[w' kill-region
 bindkey -v
 
 # jj to escape to normal mode (like Vim)
-bindkey -M viins 'jj' vi-cmd-mode
+bindkey -M viins 'jk' vi-cmd-mode
+
+
+function yank-full-line-to-both() {
+  CUTBUFFER="$BUFFER"
+  print -rn -- "$BUFFER" | wl-copy
+}
+
+zle -N yank-full-line-to-both
+bindkey -M vicmd 'yy' yank-full-line-to-both
+
 
 # History
 HISTSIZE=5000
@@ -94,13 +104,13 @@ alias k='kubectl'
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
-export MOZ_ENABLE_WAYLAND=1
-export GTK_BACKEND=wayland
-export OZONE_PLATFORM=wayland
-
-# Example for 1.25 scaling on a 96 DPI screen
-export GDK_SCALE=1
-export GDK_DPI_SCALE=1.25
+# export MOZ_ENABLE_WAYLAND=1
+# export GTK_BACKEND=wayland
+# export OZONE_PLATFORM=wayland
+#
+# # Example for 1.25 scaling on a 96 DPI screen
+# export GDK_SCALE=1
+# export GDK_DPI_SCALE=1.25
 
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
@@ -334,3 +344,16 @@ _kubectl()
 if [ "$funcstack[1]" = "_kubectl" ]; then
     _kubectl
 fi
+
+# Auto-start tmux unless already inside tmux or using SSH with a multiplexer
+if command -v tmux &>/dev/null && [ -z "$TMUX" ] && [ -z "$SSH_TTY" ]; then
+  tmux attach-session -t main || tmux new-session -s main
+fi
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
