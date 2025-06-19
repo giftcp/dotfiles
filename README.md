@@ -22,7 +22,6 @@ The configuration is optimized for a Wayland-based environment using the **Hyprl
 ├── bashrc/                 # Contains .bashrc
 ├── zshrc/                  # Contains .zshrc
 ├── gitignore/              # Contains .gitignore
-├── kube/                   # Contains .kube/
 ├── hypr/                   # Contains .config/hypr
 ├── kitty/                  # Contains .config/kitty
 ├── nvim/                   # Contains .config/nvim
