@@ -1,57 +1,68 @@
 # Dotfiles
 
-This repository contains my personal Linux dotfiles, organized for easy deployment and version control across systems. The setup is tailored for a Wayland environment using the Hyprland compositor, with a focus on performance, minimalism, and productivity.
+This repository contains my personal Linux dotfiles, structured for use with [GNU Stow](https://www.gnu.org/software/stow/) to simplify the management and deployment of configuration files across systems.
+
+The configuration is optimized for a Wayland-based environment using the **Hyprland** compositor, and includes setups for terminal, editor, bar, launcher, and shells.
 
 ## Features
 
-- **Shell Configurations**: Customizations for both `bash` and `zsh` shells.
-- **Window Manager**: Configuration for Hyprland under `hypr/`.
-- **Terminal Emulator**: Themed and optimized `kitty` terminal configuration.
-- **Editor**: Full Neovim setup under `nvim/`, utilizing modern plugins and performance tweaks.
-- **System Bar**: A Waybar configuration with CPU and memory widgets added.
-- **Launcher**: `wofi` setup, including a custom configuration adapted from TypeScript.
-- **Kubernetes**: `.kube` directory maintained at the root level for cluster configuration files.
+- **Shells**: `.bashrc` and `.zshrc` for bash and zsh customizations.
+- **Hyprland**: Window manager configuration under `hypr/`.
+- **Kitty**: A clean, fast terminal with settings stored in `kitty/`.
+- **Neovim**: Complete IDE setup via `nvim/` using modern plugin management.
+- **Waybar**: System bar enhancements including CPU and memory widgets.
+- **Wofi**: Application launcher configured using TypeScript-based styles.
+- **Kubernetes**: `.kube/` directory included for managing clusters.
+- **Stow-Ready**: All folders are organized to allow seamless use with GNU Stow.
 
-## Repository Structure
+## Directory Layout
+
+```
 .
-├── .bashrc # Bash shell configuration
-├── .zshrc # Zsh shell configuration
-├── .gitignore # Ignore rules for backup/system-specific files
-├── README.md # This file
-└── .config/
-├── hypr/ # Hyprland window manager settings
-├── kitty/ # Kitty terminal configuration
-├── nvim/ # Neovim configuration and plugin management
-├── waybar/ # Waybar status bar settings
-└── wofi/ # Wofi launcher configuration
-
-## Setup Instructions
-
-To deploy these dotfiles on a new system:
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/dotfiles.git ~/dotfiles
+├── bashrc/                 # Contains .bashrc
+├── zshrc/                  # Contains .zshrc
+├── gitignore/              # Contains .gitignore
+├── kube/                   # Contains .kube/
+├── hypr/                   # Contains .config/hypr
+├── kitty/                  # Contains .config/kitty
+├── nvim/                   # Contains .config/nvim
+├── waybar/                 # Contains .config/waybar
+├── wofi/                   # Contains .config/wofi
+└── README.md               # This file
 ```
 
-2. Create symbolic links or copy the files to your home directory:
+> Note: Each top-level directory is structured so that Stow can symlink files into `$HOME`.
 
-```bash
-ln -s ~/dotfiles/.bashrc ~/.bashrc
-ln -s ~/dotfiles/.zshrc ~/.zshrc
-ln -s ~/dotfiles/.config/hypr ~/.config/hypr
-ln -s ~/dotfiles/.config/kitty ~/.config/kitty
-ln -s ~/dotfiles/.config/nvim ~/.config/nvim
-ln -s ~/dotfiles/.config/waybar ~/.config/waybar
-ln -s ~/dotfiles/.config/wofi ~/.config/wofi
-ln -s ~/dotfiles/.kube ~/.kube
-Reload your shell or reboot to apply changes.
-```
-3. Reload your shell or reboot to apply changes.
+## Usage with GNU Stow
 
+1. Clone the repository into your home directory or a central dotfiles directory:
+
+   ```bash
+   git clone https://github.com/yourusername/dotfiles.git ~/dotfiles
+   cd ~/dotfiles
+   ```
+
+2. Stow the desired configuration(s):
+
+   ```bash
+   stow bashrc
+   stow zshrc
+   stow hypr
+   stow kitty
+   stow nvim
+   stow waybar
+   stow wofi
+   stow kube
+   stow gitignore
+   ```
+
+   This will symlink the relevant files and folders into your `$HOME` directory. For example, `bashrc/.bashrc` will be linked to `~/.bashrc`.
 
 ## Notes
-Ensure all required dependencies (such as hyprland, kitty, neovim, waybar, and wofi) are installed.
 
-These dotfiles assume a Linux environment using Wayland; behavior may vary on other setups.
+- Ensure all necessary packages (e.g. `hyprland`, `kitty`, `neovim`, `waybar`, `wofi`, `stow`) are installed.
+- These dotfiles are designed for Wayland compositors and may not work as intended in X11 environments.
+
+## License
+
+These dotfiles are distributed under the MIT License. Feel free to use, fork, or modify them to suit your workflow.
