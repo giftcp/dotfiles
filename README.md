@@ -12,7 +12,6 @@ The configuration is optimized for a Wayland-based environment using the **Hyprl
 - **Neovim**: Complete IDE setup via `nvim/` using modern plugin management.
 - **Waybar**: System bar enhancements including CPU and memory widgets.
 - **Wofi**: Application launcher configured using TypeScript-based styles.
-- **Kubernetes**: `.kube/` directory included for managing clusters.
 - **Stow-Ready**: All folders are organized to allow seamless use with GNU Stow.
 
 ## Directory Layout
